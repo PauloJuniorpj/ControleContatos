@@ -33,8 +33,8 @@
                         <td>@dados.Celular</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Editar">Editar</a>
-                                <a role="button" class="btn btn-danger" asp-controller="Contato" asp-action="Deletar">Deletar</a>
+                                <a class="btn btn-primary" role="button" asp-controller="Contato" asp-route-id="@dados.Id" asp-action="EditarConfirmacao">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-controller="Contato" asp-route-id="@dados.Id" asp-action="DeletarConfirmacao">Deletar</a>
                             </div>
                         </td>
                     </tr>
