@@ -33,8 +33,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
+                <th scope="col">Perfil</th>
                 <th scope="col">Login</th>
-                <th scope="col">DataDeCadastro</th>
+                <th scope="col">Data de Cadastro</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -47,6 +48,7 @@
                         <th scope="row">@dados.Id</th>
                         <td>@dados.Name</td>
                         <td>@dados.Email</td>
+                        <td>@(dados.perfil == ControleContatos.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
                         <td>@dados.Login</td>
                         <td>@dados.DataCadastro</td>
                         <td>

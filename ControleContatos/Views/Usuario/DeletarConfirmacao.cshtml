@@ -1,0 +1,22 @@
+﻿@model UsuarioModel
+@{
+    ViewData["TITLE"] = "Deletar Usuário ";
+}
+
+
+<div class="text-center">
+    
+    @if (Model != null)
+    {
+        <h3>Realmente deseja apagar o contato @Model.Name?</h3>
+    }
+    else
+    {
+        <h3>Contato não encontrado.</h3>
+    }
+
+    <a class="btn btn-outline-primary" asp-controller="Usuario" asp-action="Index">Cancelar exclusão</a>
+    <a class="btn btn-outline-danger" asp-controller="Usuario" asp-route-id="@Model.Id" asp-action="Apagar">Confirmar exclusão</a>
+
+
+</div>
