@@ -1,5 +1,6 @@
 
 using ControleContatos.Data;
+using ControleContatos.Helper;
 using ControleContatos.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,9 +10,26 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Configuração Banco Dados
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<BancoContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")));
+
+// Confing das Session do Usuario
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
 builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
 //Configuração envolvendo os Usuarios
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+// Confing das Session do Usuario
+
+builder.Services.AddScoped<ISessao, SessaoUsuario>();
+
+// Confing das Session do Usuario
+builder.Services.AddSession(o =>
+{
+    o.Cookie.HttpOnly = true;
+    o.Cookie.IsEssential = true;
+});
 
 
 // Add services to the container.
@@ -32,7 +50,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

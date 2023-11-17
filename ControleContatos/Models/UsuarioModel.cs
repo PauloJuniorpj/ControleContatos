@@ -18,5 +18,12 @@ namespace ControleContatos.Models
         public DateTime? DataAtualizacao { get; set; }
 
         public PerfilEnum perfil { get; set; }
+
+        public bool SenhaValida(string senha)
+        {
+            return Senha == senha;
+        }
     }
+
+    
 }
