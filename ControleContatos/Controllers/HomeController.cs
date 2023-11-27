@@ -1,9 +1,12 @@
-﻿using ControleContatos.Models;
+﻿using ControleContatos.Filters;
+using ControleContatos.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ControleContatos.Controllers
-{
+{   
+    //Filtro onde esta as verificações se o Usuario esta logado;
+    [PaginaPraUsuarioLogado]
     public class HomeController : Controller
     {
        

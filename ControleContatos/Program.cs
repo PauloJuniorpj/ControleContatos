@@ -22,7 +22,7 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 // Confing das Session do Usuario
 
-builder.Services.AddScoped<ISessao, SessaoUsuario>();
+builder.Services.AddScoped<SessaoUsuarioRepository>();
 
 // Confing das Session do Usuario
 builder.Services.AddSession(o =>

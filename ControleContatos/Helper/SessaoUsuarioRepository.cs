@@ -4,11 +4,11 @@ using System.Text.Json.Serialization;
 
 namespace ControleContatos.Helper
 {
-    public class SessaoUsuario : ISessao
+    public class SessaoUsuarioRepository : ISessao
     {   
         private readonly IHttpContextAccessor _contextAccessor;
 
-        public SessaoUsuario(IHttpContextAccessor contextAccessor)
+        public SessaoUsuarioRepository(IHttpContextAccessor contextAccessor)
         {
             _contextAccessor = contextAccessor;
         }

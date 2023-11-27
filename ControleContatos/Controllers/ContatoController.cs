@@ -1,9 +1,12 @@
-﻿using ControleContatos.Models;
+﻿using ControleContatos.Filters;
+using ControleContatos.Models;
 using ControleContatos.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleContatos.Controllers
 {
+    //Filtro onde esta as verificações se o Usuario esta logado;
+    [PaginaPraUsuarioLogado]
     public class ContatoController : Controller
     {
         private readonly IContatoRepository _contatoRepository;

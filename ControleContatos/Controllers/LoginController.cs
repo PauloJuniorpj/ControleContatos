@@ -1,4 +1,5 @@
-﻿using ControleContatos.Models;
+﻿using ControleContatos.Helper;
+using ControleContatos.Models;
 using ControleContatos.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,17 +9,27 @@ namespace ControleContatos.Controllers
     {
 
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly SessaoUsuarioRepository _session;
 
-        public LoginController(IUsuarioRepository usuarioRepository)
+        public LoginController(IUsuarioRepository usuarioRepository, SessaoUsuarioRepository session)
         {
             _usuarioRepository = usuarioRepository;
+            _session = session;
         }   
 
         public IActionResult Index()
-        {
+        {   // Se usuario estiver logado, redirecionar para a home;
+
+            if(_session.BuscarSessaoDoUsuario() != null)return RedirectToAction("Index", "Home");
+
             return View();
         }
-
+        
+        public IActionResult Sair()
+        {
+            _session.RemoverSessaoUsuario();
+            return RedirectToAction("Index", "Login");
+        }
 
         [HttpPost]
         public IActionResult Entrar(LoginModel model)
@@ -32,8 +43,9 @@ namespace ControleContatos.Controllers
 
                     if (usuario != null)
                     {
-                        if (usuario.SenhaValida(model.Senha))
-                        {
+                        if (usuario.SenhaValida(model.Senha)) { 
+                            
+                            _session.CriarSessaoDoUsuario(usuario);
                             return RedirectToAction("Index", "Home");
                         }
                         else

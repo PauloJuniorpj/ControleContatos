@@ -16,6 +16,7 @@ namespace ControleContatos.Repository
         {   
             //Rn envolvendo a data de cadastro
             usuario.DataCadastro = DateTime.UtcNow;
+            usuario.SetSenhaHash();
             _bancoContext.Usuarios.Add(usuario);
             // parte que comita as informaçoes
             _bancoContext.SaveChanges();
